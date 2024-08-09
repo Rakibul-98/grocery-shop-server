@@ -35,6 +35,22 @@ async function run() {
         res.send(result);
     })
 
+    const teamMembersCollection = client.db('groceryShop').collection('teamMembers');
+
+    app.get('/teams', async(req, res)=>{
+        const cursor = teamMembersCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
+    const blogsCollection = client.db('groceryShop').collection('blogs');
+
+    app.get('/blogs', async(req, res)=>{
+        const cursor = blogsCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
